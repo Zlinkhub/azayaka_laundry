@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azayaka Laundry App</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(180deg, #FFA14A 0%, #FF8C00 100%);
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* --- SPLASH SCREEN --- */
+    #splash {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(180deg, #FF8C00, #FFA14A);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fadeOut 0.1s ease forwards;
+      animation-delay: 2s;
+      z-index: 10;
+    }
+
+    #splash img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      animation: logoPop 1.5s ease;
+    }
+
+    #splash h2 {
+      margin-top: 22px;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      animation: textFade 2s ease;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 3; visibility: hidden; }
+    }
+
+    @keyframes logoPop {
+      0% { transform: scale(0.3); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes textFade {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- MAIN CONTENT --- */
+    #main {
+      opacity: 0;
+      transition: opacity 1s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    #main.show {
+      opacity: 1;
+    }
+
+    #main img {
+      width: 130px;
+      height: 130px;
+      margin-bottom: 25px;
+      object-fit: contain;
+      cursor: pointer;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 40px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    button {
+      width: 80%;
+      padding: 14px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 12px;
+      background-color: #fff;
+      color: #FF8C00;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+      background-color: #ffe0b3;
+      transform: scale(1.03);
+    }
+
+    #adminBtn {
+      display: none;
+      margin-top: 8px;
+      background-color: #333;
+      color: #fff;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 13px;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash">
+    <img src="https://zlinkhub.github.io/orderhere/logo.png" alt="Azayaka Laundry Logo">
+    <h2>Azayaka Laundry</h2>
+  </div>
+
+  <!-- Main Page -->
+  <div id="main">
+    <img id="logo" src="https://zlinkhub.github.io/orderhere/logo.png" alt="Azayaka Laundry Logo">
+    <h1>Azayaka Laundry</h1>
+    <button onclick="window.location.href='https://zlinkhub.github.io/orderhere'">🧺 Pesan Laundry</button>
+    <button onclick="window.location.href='https://zlinkhub.github.io/laundry-prices'">💰 Pricelist</button>
+    <button id="adminBtn" onclick="window.location.href='https://zlinkhub.github.io/orderhere/admin'">⚙️ Admin Panel</button>
+  </div>
+
+  <footer>Shiny, Fresh, & Clean ✨</footer>
+
+  <script>
+    // Tampilkan halaman utama setelah splash screen hilang
+    setTimeout(() => {
+      document.getElementById('main').classList.add('show');
+      document.getElementById('splash').style.display = 'none';
+    }, 3000);
+
+    // Logo tap detection untuk admin
+    let tapCount = 0;
+    const logo = document.getElementById('logo');
+    const adminBtn = document.getElementById('adminBtn');
+
+    logo.addEventListener('click', () => {
+      tapCount++;
+      if (tapCount >= 7) {
+        adminBtn.style.display = 'block';
+        adminBtn.style.animation = 'fadeIn 0.2s ease';
+      }
+      setTimeout(() => { tapCount = 0; }, 3000); // reset hitungan 3 detik
+    });
+  </script>
+</body>
+</html>
