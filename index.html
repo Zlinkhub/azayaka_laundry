@@ -39,7 +39,6 @@
       width: 200px;
       height: 200px;
       object-fit: contain;
-      border-radius: 50%;
       animation: logoPop 1.5s ease;
     }
 
@@ -81,14 +80,14 @@
       opacity: 1;
     }
 
-     #main img {
+    #main img {
       width: 130px;
       height: 130px;
       margin-bottom: 25px;
       object-fit: contain;
-      border-radius: 50%;
+      border-radius: 30%;
       cursor: pointer;
-    }   
+    }
 
     h1 {
       font-size: 26px;
@@ -102,6 +101,78 @@
       padding: 14px;
       margin: 10px 0;
       border: none;
+      border-radius: 12px;
+      background-color: #fff;
+      color: #FF8C00;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+      background-color: #ffe0b3;
+      transform: scale(1.03);
+    }
+
+    #adminBtn {
+      display: none;
+      margin-top: 8px;
+      background-color: #333;
+      color: #fff;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 13px;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash">
+    <img src="https://zlinkhub.github.io/orderhere/logo.png" alt="Azayaka Laundry Logo">
+    <h2>Azayaka Laundry</h2>
+  </div>
+
+  <!-- Main Page -->
+  <div id="main">
+    <img id="logo" src= "https://static.1010dry.id/pesanlaundry/images/5f486d5d5fb3cbf0ab6dc2278ee9a997.png" alt="Azayaka Laundry Logo">
+    <h1>Azayaka Laundry</h1>
+    <button onclick="window.location.href='https://zlinkhub.github.io/laundry-prices'">💰 Pricelist</button>
+    <button onclick="window.location.href='https://zlinkhub.github.io/orderhere'">🧺 Pesan Laundry</button>
+    
+    <button id="adminBtn" onclick="window.location.href='https://zlinkhub.github.io/orderhere/admin'">⚙️ Admin Panel</button>
+  </div>
+
+  <footer>Shiny, Fresh, & Clean ✨</footer>
+
+  <script>
+    // Tampilkan halaman utama setelah splash screen hilang
+    setTimeout(() => {
+      document.getElementById('main').classList.add('show');
+      document.getElementById('splash').style.display = 'none';
+    }, 3000);
+
+    // Logo tap detection untuk admin
+    let tapCount = 0;
+    const logo = document.getElementById('logo');
+    const adminBtn = document.getElementById('adminBtn');
+
+    logo.addEventListener('click', () => {
+      tapCount++;
+      if (tapCount >= 7) {
+        adminBtn.style.display = 'block';
+        adminBtn.style.animation = 'fadeIn 0.2s ease';
+      }
+      setTimeout(() => { tapCount = 0; }, 3000); // reset hitungan 3 detik
+    });
+  </script>
+</body>
+</html>      border: none;
       border-radius: 12px;
       background-color: #fff;
       color: #FF8C00;
